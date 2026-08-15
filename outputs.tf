@@ -20,7 +20,7 @@ output "data_factory_linked_custom_services_description" {
 }
 output "data_factory_linked_custom_services_integration_runtime" {
   description = "Map of integration_runtime values across all data_factory_linked_custom_services, keyed the same as var.data_factory_linked_custom_services"
-  value       = { for k, v in azurerm_data_factory_linked_custom_service.data_factory_linked_custom_services : k => v.integration_runtime if v.integration_runtime != null && length(v.integration_runtime) > 0 }
+  value       = { for k, v in azurerm_data_factory_linked_custom_service.data_factory_linked_custom_services : k => one(v.integration_runtime) if v.integration_runtime != null && length(v.integration_runtime) > 0 }
 }
 output "data_factory_linked_custom_services_name" {
   description = "Map of name values across all data_factory_linked_custom_services, keyed the same as var.data_factory_linked_custom_services"
